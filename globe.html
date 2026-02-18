@@ -1,23 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Interactive Globe | GeoKnown</title>
+  <title>GeoKnown Globe</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    body { margin:0; background:black; overflow:hidden; font-family:Arial, sans-serif; }
-    nav {
-      background:#1c2541; padding:15px 40px; display:flex; justify-content:space-between; align-items:center;
-    }
-    nav h1 { color:#5bc0be; font-size:26px; }
-    nav ul { list-style:none; display:flex; gap:25px; }
-    nav ul li a { text-decoration:none; color:white; font-weight:bold; }
-    #globe { width:100vw; height:calc(100vh - 70px); }
-    #searchBox {
-      position:absolute; top:80px; left:40px; z-index:1;
-      padding:10px; border-radius:8px; border:none; width:220px;
-    }
-  </style>
 </head>
 <body>
 
@@ -25,92 +10,17 @@
   <h1>GeoKnown</h1>
   <ul>
     <li><a href="index.html">Home</a></li>
-    <li><a href="levels.html">Quizzes</a></li>
     <li><a href="globe.html">Interactive Globe</a></li>
+    <li><a href="login.html">Login</a></li>
   </ul>
 </nav>
 
-<input type="text" id="searchBox" placeholder="Search country..." />
+<section class="hero">
+  <h2>Explore the World</h2>
+  <p>Rotate and visualize Earth</p>
 
-<div id="globe"></div>
-
-<!-- Libraries -->
-<script src="https://unpkg.com/three"></script>
-<script src="https://unpkg.com/globe.gl"></script>
-<script src="https://unpkg.com/topojson@3"></script>
-
-<script>
-const GlobeData = Globe()
-  .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
-  .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
-  .backgroundColor('#000')
-  (document.getElementById('globe'));
-
-// ----------------------------
-// Lighting (Day/Night)
-const threeGlobe = GlobeData; // for readability
-threeGlobe.scene().add(new THREE.AmbientLight(0xffffff, 0.5));
-const sun = new THREE.DirectionalLight(0xffffff, 0.6);
-sun.position.set(5,5,5);
-threeGlobe.scene().add(sun);
-
-// ----------------------------
-// Clickable countries
-fetch('https://unpkg.com/world-atlas@2/countries-110m.json')
-  .then(res => res.json())
-  .then(worldData => {
-    const countries = topojson.feature(worldData, worldData.objects.countries).features;
-    GlobeData.polygonsData(countries)
-      .polygonCapColor(() => 'rgba(0,150,255,0.4)')
-      .polygonSideColor(() => 'rgba(0,100,200,0.2)')
-      .polygonStrokeColor(() => '#111')
-      .polygonLabel(d => `<b>Country ID:</b> ${d.id}`)
-      .onPolygonClick(d => alert(`🌐 You clicked country ID: ${d.id}`));
-  });
-
-// ----------------------------
-// City markers
-const cities = [
-  { name: "New York", lat:40.7128, lng:-74.006 },
-  { name: "London", lat:51.5074, lng:-0.1278 },
-  { name: "Tokyo", lat:35.6895, lng:139.6917 },
-  { name: "Delhi", lat:28.6139, lng:77.209 },
-  { name: "Sydney", lat:-33.8688, lng:151.2093 }
-];
-GlobeData.pointsData(cities)
-  .pointLat(d => d.lat)
-  .pointLng(d => d.lng)
-  .pointAltitude(0.02)
-  .pointRadius(0.4)
-  .pointColor(() => 'orange')
-  .pointLabel(d => `<b>${d.name}</b>`);
-
-// ----------------------------
-// Camera + Controls
-GlobeData.controls().enableZoom = true;
-GlobeData.controls().enableRotate = true;
-GlobeData.controls().enablePan = false;
-GlobeData.controls().autoRotate = true;
-GlobeData.controls().autoRotateSpeed = 0.3;
-
-// ----------------------------
-// Country Search
-const searchBox = document.getElementById('searchBox');
-searchBox.addEventListener('keypress', e => {
-  if (e.key === 'Enter') {
-    const countryName = searchBox.value.toLowerCase();
-    const countryPoly = GlobeData.polygonsData().find(d => d.properties && d.properties.name && d.properties.name.toLowerCase() === countryName);
-    if (countryPoly) {
-      const [lng, lat] = countryPoly.geometry.coordinates[0][0];
-      GlobeData.pointOfView({ lat: lat, lng: lng, altitude: 1.5 }, 2000);
-    } else {
-      alert('Country not found.');
-    }
-  }
-});
-</script>
+  <div class="globe" style="width:350px;height:350px;"></div>
+</section>
 
 </body>
 </html>
-
-
