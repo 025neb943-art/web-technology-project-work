@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Speed Round | GeoKnown</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* TIMER */
+    .timer {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #5bc0be;
+      text-align: center;
+    }
+
+    .timer.red {
+      color: #ff4d4d;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <h1>GeoKnown</h1>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+  </ul>
+</nav>
+
+<div class="quiz-container">
+  <h2>⏱️ Speed Round</h2>
+  <div id="timer" class="timer">Time Left: 15s</div>
+
+  <form id="speedQuiz">
+
+    <div class="question">
+      <p>Capital of Japan?</p>
+      <div class="options">
+        <label><input type="radio" name="s1"> Beijing</label>
+        <label><input type="radio" name="s1"> Tokyo</label>
+        <label><input type="radio" name="s1"> Seoul</label>
+        <label><input type="radio" name="s1"> Bangkok</label>
+      </div>
+    </div>
+
+    <button class="submit-btn" type="submit">Finish</button>
+
+  </form>
+</div>
+
+<script>
+  let timeLeft = 15;
+  const timerEl = document.getElementById("timer");
+  const form = document.getElementById("speedQuiz");
+
+  const countdown = setInterval(() => {
+    timeLeft--;
+    timerEl.textContent = `Time Left: ${timeLeft}s`;
+
+    if (timeLeft <= 5) {
+      timerEl.classList.add("red");
+    }
+
+    if (timeLeft <= 0) {
+      clearInterval(countdown);
+      alert("⏰ Time's up!");
+      form.submit();
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>

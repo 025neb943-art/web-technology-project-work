@@ -1,0 +1,269 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #0b132b;
+  color: white;
+}
+
+/* NAVBAR */
+nav {
+  background: #1c2541;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav h1 {
+  font-size: 26px;
+  color: #5bc0be;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  color: #5bc0be;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.hero h2 {
+  font-size: 48px;
+  color: #5bc0be;
+}
+
+.hero p {
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+/* FAKE GLOBE */
+.globe {
+  margin: 30px auto;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg");
+  background-size: cover;
+  animation: spin 20s linear infinite;
+  box-shadow: inset -20px -20px 50px rgba(0,0,0,0.6);
+}
+
+@keyframes spin {
+  from { background-position: 0 0; }
+  to { background-position: -1000px 0; }
+}
+
+/* QUIZZES */
+.quizzes {
+  padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.quiz-card {
+  background: #1c2541;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.quiz-card h3 {
+  margin-bottom: 10px;
+  color: #5bc0be;
+}
+
+/* LOGIN */
+.login-box {
+  width: 320px;
+  margin: 80px auto;
+  background: #1c2541;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 10px;
+  background: #5bc0be;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* QUIZ PAGE */
+.quiz-container {
+  max-width: 700px;
+  margin: 40px auto;
+  background: #1c2541;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.quiz-container h2 {
+  text-align: center;
+  color: #5bc0be;
+  margin-bottom: 20px;
+}
+
+.question {
+  margin-bottom: 25px;
+}
+
+.question p {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.options label {
+  display: block;
+  padding: 10px;
+  background: #0b132b;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.options input {
+  margin-right: 10px;
+}
+
+.options label:hover {
+  background: #3a506b;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: #5bc0be;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* LEVEL SELECTION */
+.levels-container {
+  max-width: 800px;
+  margin: 80px auto;
+  text-align: center;
+}
+
+.levels-container h2 {
+  color: #5bc0be;
+  margin-bottom: 40px;
+  font-size: 36px;
+}
+
+.level-boxes {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.level {
+  background: #1c2541;
+  padding: 40px;
+  width: 260px;
+  border-radius: 15px;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.level:hover {
+  transform: scale(1.05);
+  background: #3a506b;
+}
+
+.level h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #5bc0be;
+}
+
+.level p {
+  margin-bottom: 25px;
+  opacity: 0.9;
+}
+
+.level a {
+  display: inline-block;
+  padding: 12px 25px;
+  background: #5bc0be;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 25px;
+}
+/* HARD GRID MODE */
+.hard-container {
+  max-width: 900px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.hard-container h2 {
+  color: #ffb703;
+  margin-bottom: 10px;
+}
+
+.hard-container p {
+  opacity: 0.85;
+  margin-bottom: 30px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.cell {
+  background: #1c2541;
+  padding: 20px;
+  border-radius: 8px;
+  min-height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.header {
+  background: #3a506b;
+  color: #ffb703;
+}
+
+.play-note {
+  margin-top: 25px;
+  opacity: 0.8;
+  font-size: 14px;
+}
+.quiz-card {
+  text-decoration: none;
+  color: white;
+}
